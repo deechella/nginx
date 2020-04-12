@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deploymentinyaml
+  labels:
+    color: blue
+    app: erp
+spec:
+  replicas: 3
+  template:
+    metadata:
+      name: deploymentpodinyamlusingjenkins
+      labels:
+        app: erp
+    spec:
+     containers:
+       - name: deploymentcontainerinyamlusingjenkins
+         image: nginx
+  selector:
+    matchLabels:
+      app: erp	
