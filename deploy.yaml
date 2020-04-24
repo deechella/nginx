@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginxdeploymentusingjenkins
+  name: nginxprojectausingjenkins
   labels:
     color: blue
     app: erp
@@ -9,13 +9,27 @@ spec:
   replicas: 3
   template:
     metadata:
-      name: deploymentpodinyamlusingjenkins
+      name: nginxpodawithjenkins
       labels:
         app: erp
     spec:
      containers:
-       - name: deploymentcontainerinyamlusingjenkins
+       - name: deploymentcontainerprojectajenkins
          image: nginx
   selector:
     matchLabels:
       app: erp	
+      
+---
+apiVersion: v1
+kind : Service
+metadata:
+  name: jenkinsprojectawithjenkins
+spec:
+  type: NodePort
+  ports:
+    - port: 80
+      targetPort: 80
+  selector:
+    app: nginxold
+    
